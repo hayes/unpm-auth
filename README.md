@@ -1,2 +1,4 @@
 unpm-auth
 =========
+# License
+MIT
