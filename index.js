@@ -35,15 +35,15 @@ function setup(unpm, store) {
 
       stream.on('error', respond)
       context.req.pipe(stream)
-    }
 
-    function loaded(data) {
-      try {
-        data = JSON.parse(data.toString())
-        context.body = data
-        handler(context, route, respond)
-      } catch(err) {
-        respond(err)
+      function loaded(data) {
+        try {
+          data = JSON.parse(data.toString())
+          context.body = data
+          handler(context, route, respond)
+        } catch(err) {
+          respond(err)
+        }
       }
     }
   }
