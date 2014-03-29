@@ -1,16 +1,25 @@
-var config = require('../../lib/config.json')
-  , User = require('../../lib/models/User')
-  , backend = require('../backend')
-  , setup = require('../setup')
+var backend = require('unpm-mem-backend')
+  , User = require('../lib/User')
   , crypto = require('crypto')
+  , test = require('tape')
 
-var test = setup(function(context) {
-  context.config = config
-  context.backend = backend()
-})
+function setup_user() {
+  var unpm = {}
+
+  unpm.backend = backend()
+  unpm.config = {}
+  unpm.config.crypto = {
+      algorithm: 'sha512'
+    , saltLength: 30
+    , iterations: 10
+  }
+
+  return User(unpm)
+}
 
 test('create user', function(t) {
-  var user_data = {}
+  var User = setup_user()
+    , user_data = {}
 
   user_data.password_sha = 'hunter2'
   user_data.date = '2014-01-01'
@@ -35,6 +44,8 @@ test('create user', function(t) {
 })
 
 test('find user', function(t) {
+  var User = setup_user()
+
   var data = {
       name: 'ZeroCool'
     , email: 'me@example.com'
@@ -65,6 +76,8 @@ test('find user', function(t) {
 })
 
 test('update user', function(t) {
+  var User = setup_user()
+
   var data = {
       name: 'ZeroCool'
     , email: 'me@example.com'
@@ -111,6 +124,8 @@ test('update user', function(t) {
 })
 
 test('auth user', function(t) {
+  var User = setup_user()
+
   var data = {
       email: 'me@example.com'
     , salt: 'saltine'
