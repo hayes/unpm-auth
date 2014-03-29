@@ -24,7 +24,7 @@ function setup(unpm, store) {
   unpm.router.add(
       'POST'
     , '/_session'
-    , load(sessions.create)
+    , load(controllers.create)
   )
   unpm.sessions = store || SessionStore()
   unpm.User = User(unpm)
