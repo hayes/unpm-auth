@@ -24,7 +24,7 @@ test('create user', function(t) {
   user_data.password_sha = 'hunter2'
   user_data.date = '2014-01-01'
 
-  t.plan(4)
+  t.plan(3)
 
   User.create('ZeroCool', user_data, function(err) {
     t.ok(!err, 'no error')
@@ -36,10 +36,6 @@ test('create user', function(t) {
 
   User.create('ZeroCool', {date: 'foo'}, function(err) {
     t.ok(err, 'requires password')
-  })
-
-  User.create('ZeroCool', {password_sha: 'foo'}, function(err) {
-    t.ok(err, 'requires date')
   })
 })
 
@@ -65,7 +61,7 @@ test('find user', function(t) {
       t.equal(user.email, data.email, 'gets email')
       t.equal(user.date, data.date, 'gets date')
       t.ok('_rev', 'gets _rev')
-      t.equal(Object.keys(user).length, 4, 'nothing else')
+      t.equal(Object.keys(user).length, 3, 'nothing else')
     })
 
     User.find('other guy', function(err, user) {
@@ -109,7 +105,7 @@ test('update user', function(t) {
     t.equal(user.email, data.email, 'gets email')
     t.equal(user.date, data.date, 'gets date')
     t.ok('_rev', 'gets _rev')
-    t.equal(Object.keys(user).length, 4, 'nothing else')
+    t.equal(Object.keys(user).length, 3, 'nothing else')
 
     User.find(data.name, found)
   }
@@ -119,7 +115,7 @@ test('update user', function(t) {
     t.equal(user.email, data.email, 'gets email')
     t.equal(user.date, data.date, 'gets date')
     t.ok('_rev', 'gets _rev')
-    t.equal(Object.keys(user).length, 4, 'nothing else')
+    t.equal(Object.keys(user).length, 3, 'nothing else')
   }
 })
 
@@ -150,7 +146,7 @@ test('auth user', function(t) {
     t.equal(user.email, data.email, 'gets email')
     t.equal(user.date, data.date, 'gets date')
     t.ok('_rev', 'gets _rev')
-    t.equal(Object.keys(user).length, 4, 'nothing else')
+    t.equal(Object.keys(user).length, 3, 'nothing else')
 
     User.auth('ZeroCool', 'hunter3', not_found)
     User.auth('ZeroCoo1', 'hunter2', not_found)
