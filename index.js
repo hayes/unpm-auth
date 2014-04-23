@@ -1,4 +1,4 @@
-var SessionStore = require('./lib/SessionStore')
+var SessionStore = require('./lib/session-store')
   , controllers = require('./lib/controllers')
   , check_auth = require('./lib/check-auth')
   , concat = require('concat-stream')
