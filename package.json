@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "tape": "^2.12.0",
-    "unpm-mem-backend": "0.1.0"
+    "unpm-mem-backend": "0.1.1"
   }
 }
