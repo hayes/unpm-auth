@@ -1,4 +1,4 @@
-var create_session_store = require('../lib/SessionStore')
+var create_session_store = require('../lib/session-store')
  , test = require('tape')
 
 test('can set', function(t) {

@@ -1,5 +1,5 @@
 var backend = require('unpm-mem-backend')
-  , User = require('../lib/User')
+  , User = require('../lib/user')
   , crypto = require('crypto')
   , test = require('tape')
 

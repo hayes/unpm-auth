@@ -1,2 +1,2 @@
-require('./SessionStore.test')
-require('./User.test')
+require('./session-store')
+require('./user')

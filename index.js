@@ -2,7 +2,7 @@ var SessionStore = require('./lib/SessionStore')
   , controllers = require('./lib/controllers')
   , check_auth = require('./lib/check-auth')
   , concat = require('concat-stream')
-  , User = require('./lib/User')
+  , User = require('./lib/user')
 
 module.exports = setup
 module.exports.check_auth = check_auth
