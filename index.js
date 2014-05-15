@@ -29,7 +29,7 @@ function setup(unpm, store) {
     , load(controllers.create)
   )
   unpm.sessions = store || SessionStore()
-  unpm.User = User(unpm)
+  unpm.User = unpm.config.User(unpm) || User(unpm)
 
   function load(handler) {
     return function(context, route, respond) {
