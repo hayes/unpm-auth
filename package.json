@@ -1,6 +1,6 @@
 {
   "name": "unpm-auth",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "add auth endpoints to unpm",
   "main": "index.js",
   "scripts": {
