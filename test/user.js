@@ -1,36 +1,36 @@
 var backend = require('unpm-mem-backend')
-  , User = require('../lib/user')
-  , crypto = require('crypto')
-  , test = require('tape')
+var User = require('../lib/user')
+var crypto = require('crypto')
+var test = require('tape')
 
-function setup_user() {
+function setupUser() {
   var unpm = {}
 
   unpm.backend = backend()
   unpm.config = {}
   unpm.config.crypto = {
-      algorithm: 'sha512'
-    , saltLength: 30
-    , iterations: 10
+    algorithm: 'sha512',
+    saltLength: 30,
+    iterations: 10
   }
 
   return User(unpm)
 }
 
 test('create user', function(t) {
-  var User = setup_user()
-    , user_data = {}
+  var User = setupUser()
+  var userData = {}
 
-  user_data.password_sha = 'hunter2'
-  user_data.date = '2014-01-01'
+  userData.password_sha = 'hunter2'
+  userData.date = '2014-01-01'
 
   t.plan(3)
 
-  User.create('ZeroCool', user_data, function(err) {
+  User.create('ZeroCool', userData, function(err) {
     t.ok(!err, 'no error')
   })
 
-  User.create(null, user_data, function(err) {
+  User.create(null, userData, function(err) {
     t.ok(err, 'requires username')
   })
 
@@ -40,14 +40,14 @@ test('create user', function(t) {
 })
 
 test('find user', function(t) {
-  var User = setup_user()
+  var User = setupUser()
 
   var data = {
-      name: 'ZeroCool'
-    , email: 'me@example.com'
-    , salt: 'saltine'
-    , date: '2014-01-01'
-    , password_sha: sha('hunter2saltine')
+    name: 'ZeroCool',
+    email: 'me@example.com',
+    salt: 'saltine',
+    date: '2014-01-01',
+    password_sha: sha('hunter2saltine')
   }
 
   t.plan(9)
@@ -65,21 +65,21 @@ test('find user', function(t) {
     })
 
     User.find('other guy', function(err, user) {
-      t.ok(err, 'error when not found')
+      t.ok(!err, 'no error when not found')
       t.ok(!user, 'no user for other guy')
     })
   })
 })
 
 test('update user', function(t) {
-  var User = setup_user()
+  var User = setupUser()
 
   var data = {
-      name: 'ZeroCool'
-    , email: 'me@example.com'
-    , salt: 'saltine'
-    , date: '2014-01-01'
-    , password_sha: sha('hunter2saltine')
+    name: 'ZeroCool',
+    email: 'me@example.com',
+    salt: 'saltine',
+    date: '2014-01-01',
+    password_sha: sha('hunter2saltine')
   }
 
   t.plan(12)
@@ -120,12 +120,12 @@ test('update user', function(t) {
 })
 
 test('auth user', function(t) {
-  var User = setup_user()
+  var User = setupUser()
 
   var data = {
-      email: 'me@example.com'
-    , salt: 'saltine'
-    , date: '2014-01-01'
+    email: 'me@example.com',
+    salt: 'saltine',
+    date: '2014-01-01'
   }
 
   data.password_sha = sha('hunter2saltine')
