@@ -9,7 +9,7 @@ config.auth = {
 
 test('whitelist', function(t) {
   check(
-    null,
+    {req: {method: 'POST', url: '/a'}},
     {method: 'POST', route: '/a'},
     {config: config},
     function() {
@@ -22,7 +22,7 @@ test('whitelist', function(t) {
 
 test('checks', function(t) {
   check(
-    null,
+    {req: {method: 'POST', url: '/b'}},
     {method: 'POST', route: '/b'},
     {config: config},
     null,
